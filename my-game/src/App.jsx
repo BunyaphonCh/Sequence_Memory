@@ -11,6 +11,11 @@ function App() {
     setSequence((prev) => [...prev, newRandomNumber]);
     setUserSequence([]);
   };
+  useEffect(() => {
+    if (sequence.length > 0) {
+      showSequence();
+    }
+  }, [sequence]);
   const showSequence = async () => {
     setIsShowingSequence(true);
     for (let i = 0; i < sequence.length; i++) {
@@ -21,39 +26,38 @@ function App() {
       await new Promise(resolve => setTimeout(resolve, 200));
     }
     setIsShowingSequence(false);
-  }
-  // const testGlow = () => {
-  //   setLitButton(4);
-  //   setTimeout(() => setLitButton(null), 500);
-  // };
-  // const renderGame = () => (
-  //   <div className="flex flex-col items-center">
-  //   </div>
-  // );
-  // return (
-  //   <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-  //     <h1 
-  //       onClick={testGlow}
-  //       className='text-white text-4xl font-bold mb-10 tracking-widest drop-shadow-md'
-  //     >
-  //       Memory Game
-  //     </h1>
-  //     {gameState == 'playing' && (
-  //       <div className="grid grid-cols-3 gap-4 bg-slate-800 p-6 rounded-2xl shadow-2xl">
-  //       {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => (
-  //       <button
-  //         key={id}
-  //         className={`w-20 h-20 sm:w-24 sm:h-24 bg-slate-700 rounded-lg transition-all duration-200"
-  //         ${id == litButton
-  //           ? 'bg-cyan-400 shadow-[0_0_30px_#22d3ee] scale-105'
-  //           : 'bg-slate-700 hover:bg-slate-600'
-  //         }`}
-  //       />
-  //       ))}
-  //     </div>
-  //     )}
-  //     <p className="text-slate-400 mt-8 text-lg">Yo, don't forget the sequence!</p>
-  //   </div>
-  // )
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4 touch-none">
+      <h1 className="text-white text-3xl font-bold mb-8 tracking-tighter">MEMORY GAME</h1>
+      {sequence.length === 0 && (
+        <button
+          onClick={addToSequence}
+          className="bg-cyan-500 hover:bg-cyan-400 text-white px-8 py-3 rounded-full font-bold text-xl shadow-lg transition-all active:scale-90">
+            START GAME
+        </button>
+      )}
+      {sequence.length > 0 && (
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 bg-slate-800 p-4 sm:p-6 rounded-2xl shadow-2xl w-full max-w-[350px]">
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((id) => (
+            <button
+              key={id}
+              disabled={isShowingSequence}
+              className={`aspect-square rounded-xl transition-all duration-200
+                ${id === litButton
+                  ? 'bg-cyan-400 shadown-[0_0_40px_#22d3ee] scale-95'
+                  : 'bg-slate-700 active:bg-slate-600'
+                } ${isShowingSequence ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+                />
+          ))}
+        </div>
+      )}
+      <div className="mt-8 text-slate-400 font-medium">
+        {sequence.length > 0 && `Level: ${sequence.length}`}
+      </div>
+    </div>
+  )
+  
 }
 export default App
