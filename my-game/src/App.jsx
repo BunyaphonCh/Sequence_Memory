@@ -18,6 +18,9 @@ function App() {
   );
   return (
     <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
+      <h1 className='text-white text-4xl font-bold mb-10 tracking-widest drop-shadow-md'>
+        Memory Game
+      </h1>
       {gameState == 'playing' && renderGame()}
     </div>
   )
