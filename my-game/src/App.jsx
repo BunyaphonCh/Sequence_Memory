@@ -32,6 +32,12 @@ function App() {
     setIsShowingSequence(false);
   };
 
+  const handleButtonClick = (id) => {
+    if (isShowingSequence) return;
+    const newUserSequence = [...userSequence, id];
+    setUserSequence(newUserSequence);
+  }
+
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4 touch-none">
       <h1 className="text-white text-3xl font-bold mb-8 tracking-tighter">MEMORY GAME 🧠</h1>
