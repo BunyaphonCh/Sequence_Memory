@@ -73,6 +73,19 @@ function App() {
     }
   }
 
+  const renderGiftScene = () => (
+    <div className="flex flex-col items-center animate-bounce">
+      <h2 className="text-white text-2xl mb-8 font-bold">เริ่ดมาก มีอะไรจะให้ด้วยเเหละ</h2>
+      <button
+        onClick={() => setGameState('final')}
+        className="text-8xl hover:scale-110 transition-transform active:scale-95 cursor-pointer"
+        >
+          🎁
+        </button>
+        <p className="text-slate-400 mt-6 italic">ลองกดที่กล่องเพื่อเปิดดู...</p>
+    </div>
+  )
+
   return (
     <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4">
       <h1 className="text-white text-3xl font-bold mb-8">MEMORY GAME 🧠</h1>
