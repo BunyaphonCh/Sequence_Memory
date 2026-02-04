@@ -37,24 +37,24 @@ function App() {
   };
 
   const handleButtonClick = (id) => {
-    if (isShowingSequence) return;
+    if (isShowingSequence || sequence.length === 0) return;
     const newUserSequence = [...userSequence, id];
     setUserSequence(newUserSequence);
     setLitButton(id);
-    setTimeout(() => setLitButton(null), 200);
+    setTimeout(() => setLitButton(null), 150);
     const currentIndex = newUserSequence.length - 1;
 
     if (newUserSequence[currentIndex] !== sequence[currentIndex]) {
-      alert("Game Over! คุณไปได้ถึงเวล " + sequence.length);
+      setMessage(`Game over เเว้ว ทำได้ ${sequence.length - 1} คะเเนน`)
       setSequence([]);
       return;
     }
 
     if (newUserSequence.length === sequence.length) {
+      setMessage("ตึงจัด ไปต่อด่านถัดไปวัยรุ่น")
       setTimeout(() => {
-        alert("ตึงจัด ไปต่อด่านถัดไปวัยรุ่น");
         addToSequence();
-      }, 500);
+      }, 800);
     }
   }
 
