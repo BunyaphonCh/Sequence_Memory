@@ -51,7 +51,7 @@ function App() {
     }
 
     if (newUserSequence.length === sequence.length) {
-      setMessage("ตึงจัด ไปต่อด่านถัดไปวัยรุ่น")
+      setMessage("ตึงจัดด")
       setTimeout(() => {
         addToSequence();
       }, 800);
@@ -59,8 +59,16 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4 touch-none">
-      <h1 className="text-white text-3xl font-bold mb-8 tracking-tighter">MEMORY GAME 🧠</h1>
+    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-4">
+      <h1 className="text-white text-3xl font-bold mb-8">MEMORY GAME 🧠</h1>
+      {/* ส่วนแสดงข้อความแจ้งเตือนสถานะเกม */}
+      <div className={`mb-6 px-6 py-2 rounded-full font-medium transition-all ${
+        message.includes('จบเกม') ? 'bg-red-500/20 text-red-400' : 'bg-cyan-500/10 text-cyan-400'
+      }`}>
+        {message}
+    </div>
+
+  {/* ... ส่วนของปุ่ม Start และ Grid เกมเหมือนเดิม ... */}
 
       {/* ถ้ายังไม่ได้เริ่ม หรืออยากเริ่มใหม่ */}
       {sequence.length === 0 && (
