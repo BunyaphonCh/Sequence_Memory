@@ -6,6 +6,7 @@ function App() {
   const [userSequence, setUserSequence] = useState([]); // คำตอบ
   const [litButton, setLitButton] = useState(null); // ไฟที่กำลังสว่าง
   const [isShowingSequence, setIsShowingSequence] = useState(false);
+  const [message, setMessage] = useState("กดปุ่ม Start เพื่อเริ่มเกม")
 
   // 1. ฟังก์ชันสุ่มเลขใหม่
   const addToSequence = () => {
@@ -23,13 +24,16 @@ function App() {
 
   const showSequence = async () => {
     setIsShowingSequence(true);
+    const speed = Math.max(200, 600 - (sequence.length * 40));
+    const gap = Math.max(50, 200 - (sequence.length * 10));
     for (let i = 0; i < sequence.length; i++) {
       setLitButton(sequence[i]);
-      await new Promise(r => setTimeout(r, 600));
+      await new Promise(r => setTimeout(r, speed));
       setLitButton(null);
-      await new Promise(r => setTimeout(r, 200));
+      await new Promise(r => setTimeout(r, gap));
     }
     setIsShowingSequence(false);
+    setMessage("ตาคุณเเล้ว");
   };
 
   const handleButtonClick = (id) => {
