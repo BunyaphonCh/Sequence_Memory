@@ -44,10 +44,25 @@ function App() {
     setTimeout(() => setLitButton(null), 150);
     const currentIndex = newUserSequence.length - 1;
 
-    if (newUserSequence[currentIndex] !== sequence[currentIndex]) {
-      setMessage(`Game over เเว้ว ทำได้ ${sequence.length - 1} คะเเนน`)
-      setSequence([]);
-      return;
+    // if (newUserSequence[currentIndex] !== sequence[currentIndex]) {
+    //   setMessage(`Game over เเว้ว ทำได้ ${sequence.length - 1} คะเเนน`)
+    //   setSequence([]);
+    //   return;
+    // }
+
+    if (newUserSequence.length === sequence.length) {
+      const nextLevel = sequence.length + 1;
+
+      if (nextLevel > 5) {
+        setTimeout(() => {
+          setGameState('gift');
+        }, 500);
+      } else {
+        setMessage("เริ่ด");
+        setTimeout(() => {
+          addToSequence();
+        }, 800)
+      }
     }
 
     if (newUserSequence.length === sequence.length) {
