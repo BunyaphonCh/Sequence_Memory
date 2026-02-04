@@ -36,6 +36,22 @@ function App() {
     if (isShowingSequence) return;
     const newUserSequence = [...userSequence, id];
     setUserSequence(newUserSequence);
+    setLitButton(id);
+    setTimeout(() => setLitButton(null), 200);
+    const currentIndex = newUserSequence.length - 1;
+
+    if (newUserSequence[currentIndex] !== sequence[currentIndex]) {
+      alert("Game Over! คุณไปได้ถึงเวล " + sequence.length);
+      setSequence([]);
+      return;
+    }
+
+    if (newUserSequence.length === sequence.length) {
+      setTimeout(() => {
+        alert("ตึงจัด ไปต่อด่านถัดไปวัยรุ่น");
+        addToSequence();
+      }, 500);
+    }
   }
 
   return (
