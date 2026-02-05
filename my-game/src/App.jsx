@@ -42,11 +42,11 @@ function App() {
     setTimeout(() => setLitButton(null), 150);
     const currentIndex = newUserSequence.length - 1;
 
-    // if (newUserSequence[currentIndex] !== sequence[currentIndex]) {
-    //   setMessage(`Game over เเว้ว ทำได้ ${sequence.length - 1} คะเเนน`)
-    //   setSequence([]);
-    //   return;
-    // }
+    if (newUserSequence[currentIndex] !== sequence[currentIndex]) {
+      setMessage(`Game over เเว้ว ทำได้ ${sequence.length - 1} คะเเนน`)
+      setSequence([]);
+      return;
+    }
 
     if (newUserSequence.length === sequence.length) {
       const nextLevel = sequence.length + 1;
