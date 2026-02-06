@@ -6,7 +6,8 @@ function App() {
   const [userSequence, setUserSequence] = useState([]);
   const [litButton, setLitButton] = useState(null);
   const [isShowingSequence, setIsShowingSequence] = useState(false);
-  const [message, setMessage] = useState("กดปุ่ม Start เพื่อเริ่มเกม")
+  const [message, setMessage] = useState("กดปุ่ม Start เพื่อเริ่มเกม");
+  const [noButtonPos, setNoButtonPos] = useState({top: '50%', left: '60%'});
 
   const addToSequence = () => {
     const newRandomNumber = Math.floor(Math.random() * 9);
