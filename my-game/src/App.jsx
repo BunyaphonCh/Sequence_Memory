@@ -16,13 +16,12 @@ function App() {
   };
 
   useEffect(() => {
-    if (sequence.length > 0) {
-      showSequence();
-    }
+    if (sequence.length > 0) showSequence();
   }, [sequence]);
 
   const showSequence = async () => {
     setIsShowingSequence(true);
+    setMessage("จำลำดับไฟ")
     const speed = Math.max(200, 600 - (sequence.length * 40));
     const gap = Math.max(50, 200 - (sequence.length * 10));
     for (let i = 0; i < sequence.length; i++) {
@@ -50,26 +49,38 @@ function App() {
     }
 
     if (newUserSequence.length === sequence.length) {
-      const nextLevel = sequence.length + 1;
-
-      if (nextLevel > 5) {
-        setTimeout(() => {
-          setGameState('gift');
-        }, 500);
+      if (sequence.length >= 9) {
+        setTimeout(() => setGameState('gift'), 500);
       } else {
-        setMessage("เริ่ด");
-        setTimeout(() => {
-          addToSequence();
-        }, 800)
+        setMessage('ตึงจัดด');
+        setTimeout(addToSequence, 800);
       }
+      // const nextLevel = sequence.length + 1;
+
+      // if (nextLevel > 5) {
+      //   setTimeout(() => {
+      //     setGameState('gift');
+      //   }, 500);
+      // } else {
+      //   setMessage("เริ่ด");
+      //   setTimeout(() => {
+      //     addToSequence();
+      //   }, 800)
+      // }
     }
 
-    if (newUserSequence.length === sequence.length) {
-      setMessage("ตึงจัดด")
-      setTimeout(() => {
-        addToSequence();
-      }, 800);
-    }
+    const moveNoButton = () => {
+      const randomTop = Math.floor(Math.random() * 70 + 15) + '%';
+      const randomLeft = Math.floor(Math.random() * 70 + 15) + '%';
+      setNoButtonPos({top: randomTop, left:randomLeft});
+    };
+
+    // if (newUserSequence.length === sequence.length) {
+    //   setMessage("ตึงจัดด")
+    //   setTimeout(() => {
+    //     addToSequence();
+    //   }, 800);
+    // }
   }
 
   const renderGiftScene = () => (
